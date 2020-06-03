@@ -1,15 +1,17 @@
 {
   "name": "@claro/web-app",
   "scripts": {
-    "serve": "es-dev-server --node-resolve --watch"
+    "build": "rimraf dist && tsc && rollup -c rollup.config.js",
+    "start:build": "yarn build && es-dev-server --root-dir dist --app-index index.html --compatibility none --watch --open"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@open-wc/building-rollup": "^1.3.1",
+    "deepmerge": "^4.2.2",
     "es-dev-server": "^1.54.0",
-    "gulp": "^4.0.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.13.0",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "typescript": "^3.9.3"
   },
   "dependencies": {
     "lit-element": "^2.3.1"
