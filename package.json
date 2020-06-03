@@ -4,7 +4,7 @@
     "lerna": "^3.22.0"
   },
   "scripts": {
-    "bootstrap": "lerna clean && rm -f yarn.lock && lerna bootstrap",
+    "sync": "lerna clean && rm -f yarn.lock && lerna bootstrap",
     "bump": "lerna bootstrap && lerna version --no-push",
     "test": "lerna run test",
     "push": "git push && git push --tags"

@@ -11,8 +11,8 @@ Este proyecto es una plataforma web basada en WebComponents con fines de Prueba 
 ### Pre-requisitos
 
 ```
-node >= 8.x
-npm >= 4.x
+node >= 8.11
+npm >= 5.6
 yarn 1.21.1
 Permisos de nivel y acceso escritura, lectura para el usuario o grupo del S.O. a ejecutar (drwxr-xr-x) recomendada.
 ```
