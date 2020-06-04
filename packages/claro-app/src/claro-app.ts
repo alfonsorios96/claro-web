@@ -1,4 +1,5 @@
 import {LitElement, html, css} from 'lit-element';
+import '@claro/search-nav/search-nav.js';
 
 export class ClaroApp extends LitElement {
     static styles = css`
@@ -13,6 +14,8 @@ export class ClaroApp extends LitElement {
     render() {
         return html`
       <h1>Hello, mundo!</h1>
+      <p>Con TS ${this.foo()}</p>
+      <search-nav></search-nav>
     `;
     }
 
