@@ -8,6 +8,7 @@ export class GenrePage extends LitElement {
         return {
             genre: {type: String},
             movies: {type: Array},
+            list: {type: Array},
             genres: {type: Array}
         };
     }
@@ -37,6 +38,7 @@ export class GenrePage extends LitElement {
         super();
         this.genre = '';
         this.movies = [];
+        this.list = [];
         this.genres = [];
     }
 
@@ -62,6 +64,7 @@ export class GenrePage extends LitElement {
                             genre: this.genre,
                             title: movie.title
                         }));
+                        this.list = [...this.movies];
                     });
             } else {
                 console.error('Error al cargar películas.');
@@ -71,15 +74,20 @@ export class GenrePage extends LitElement {
 
     render() {
         return html`
-        <search-nav></search-nav>
+        <search-nav .source="${this.movies}" @movies-filtered="${this.filterCallback}"></search-nav>
         <section class="main">
-            ${this.movies.map(movie => html`
+            ${this.list.map(movie => html`
                 <div movie="${movie.id}" uri="${movie.uri}" @click="${this.selectMovie}">
                     <img src="${movie.picture}" alt="${movie.title}" width="300px" height="170px">
                 </div>
             `)}
         </section>
     `;
+    }
+
+    filterCallback(event) {
+        this.list = event.detail.movies;
+        this.requestUpdate();
     }
 
     selectMovie(event) {
