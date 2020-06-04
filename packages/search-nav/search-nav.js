@@ -8,7 +8,7 @@ export class SearchNav extends LitElement {
 
     render() {
         return html`
-        <paper-input label="Hola :D"></paper-input>   
+        <paper-input label="Busca tu película"></paper-input>   
     `;
     }
 }

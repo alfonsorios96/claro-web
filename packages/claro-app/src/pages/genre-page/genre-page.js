@@ -56,6 +56,7 @@ export class GenrePage extends LitElement {
                     .then(response => response.json())
                     .then(payload => {
                         this.movies = payload.response.groups.map(movie => ({
+                            id: movie.id,
                             uri: `/mexico/vcard/${this.genre}/${movie.title_uri}/${movie.id}`,
                             picture: movie.url_imagen_t2,
                             genre: this.genre,
@@ -73,14 +74,22 @@ export class GenrePage extends LitElement {
         <search-nav></search-nav>
         <section class="main">
             ${this.movies.map(movie => html`
-                <div>
-                    <a href="${movie.uri}">
-                        <img src="${movie.picture}" alt="${movie.title}" width="300px" height="170px">
-                    </a>
+                <div movie="${movie.id}" uri="${movie.uri}" @click="${this.selectMovie}">
+                    <img src="${movie.picture}" alt="${movie.title}" width="300px" height="170px">
                 </div>
             `)}
         </section>
     `;
+    }
+
+    selectMovie(event) {
+        const movie = event.currentTarget.getAttribute('movie');
+        const uri = event.currentTarget.getAttribute('uri');
+        this.dispatchEvent(new CustomEvent('movie-selected', {
+            detail: {
+                uri, movie
+            }
+        }));
     }
 }
 
