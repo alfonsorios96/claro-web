@@ -6,11 +6,13 @@ export const navigate = (path) => (dispatch) => {
     const order = page.split('/');
     let data = new Map();
 
-    console.log(order.length);
-
     switch (order.length) {
-        case 2:
+        case 1:
             data.set('page', 'home');
+            data.set('country', order[0]);
+            break;
+        case 2:
+            data.set('page', 'genre');
             data.set('country', order[0]);
             data.set('genre', order[1]);
             break;
@@ -32,6 +34,9 @@ const loadPage = (page) => async (dispatch) => {
             break;
         case 'movie':
             await import('../../pages/movie-page/movie-page.js');
+            break;
+        case 'genre':
+            await import('../../pages/genre-page/genre-page.js');
             break;
         default:
             page = 'home';
