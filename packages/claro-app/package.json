@@ -1,7 +1,8 @@
 {
   "name": "@claro/web-app",
+  "version": "1.0.0",
   "scripts": {
-    "build": "rimraf dist && tsc && rollup -c rollup.config.js",
+    "build": "rimraf dist && rollup -c rollup.config.js",
     "start:build": "yarn build && es-dev-server --root-dir dist --app-index index.html --compatibility none --watch --open"
   },
   "devDependencies": {
@@ -10,11 +11,13 @@
     "deepmerge": "^4.2.2",
     "es-dev-server": "^1.54.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.13.0",
-    "typescript": "^3.9.3"
+    "rollup": "^2.13.0"
   },
   "dependencies": {
     "lit-element": "^2.3.1",
+    "pwa-helpers": "^0.9.0",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "@claro/search-nav": "^1.0.0"
   }
 }

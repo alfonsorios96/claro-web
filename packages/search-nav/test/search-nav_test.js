@@ -1,11 +1,14 @@
-import { SearchNav } from '../search-nav.js';
+import {SearchNav} from '../search-nav.js';
 // import {fixture, html} from '@open-wc/testing';
+
 const assert = chai.assert;
+
 suite('search-nav', () => {
     test('is defined', () => {
         const el = document.createElement('search-nav');
         assert.instanceOf(el, SearchNav);
     });
+
     /*
     *
     * test('renders with a set name', async () => {
@@ -35,4 +38,3 @@ suite('search-nav', () => {
         );
     });*/
 });
-//# sourceMappingURL=search-nav_test.js.map
