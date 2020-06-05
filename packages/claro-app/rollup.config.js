@@ -7,8 +7,5 @@ const baseConfig = createSpaConfig({
 });
 
 export default merge(baseConfig, {
-    input: './index.html',
-    output: {
-        dir: 'dist'
-    }
+    input: './index.html'
 });

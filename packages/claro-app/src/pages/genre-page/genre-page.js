@@ -22,14 +22,11 @@ export class GenrePage extends LitElement {
             }
             
             .main > div {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: 1px solid black;
                 width: 300px;
                 height: 170px;
-                margin: 10px;
+                margin: 10px 10px 60px 10px;
                 cursor: pointer;
+                color: white;
             }
         `;
     }
@@ -78,6 +75,7 @@ export class GenrePage extends LitElement {
         <section class="main">
             ${this.list.map(movie => html`
                 <div movie="${movie.id}" uri="${movie.uri}" @click="${this.selectMovie}">
+                    <h3>${movie.title}</h3>
                     <img src="${movie.picture}" alt="${movie.title}" width="300px" height="170px">
                 </div>
             `)}

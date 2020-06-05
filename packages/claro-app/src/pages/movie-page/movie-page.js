@@ -37,7 +37,7 @@ export class MoviePage extends LitElement {
             .main {
                 color: white;
                 display: flex;
-                justify-content: space-around;
+                justify-content: space-between;
             }
             
             .responsive {
@@ -48,11 +48,22 @@ export class MoviePage extends LitElement {
             .column {
                 width: 675px;
                 hegiht: 380px;
+                margin: 10px;
             }
             
             h2 {
                 color: rgb(236, 175, 42);
                 margin-bottom: 10px;
+            }
+            
+            @media only screen and (max-width: 700px), only screen and (max-device-width: 700px) {
+              .main {
+                flex-direction: column;
+              }
+              
+              .column {
+                max-width: 500px;
+              }
             }
         `;
     }
