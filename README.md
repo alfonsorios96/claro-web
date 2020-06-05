@@ -26,9 +26,13 @@ El primero es `claro-app` que es  el proyecto de la aplicación SPA en cuestión
 
 ```shell script
 # Lo primero que tenemos que hacer es configurar el monorepositorio de Lerna
-$ yarn
+$ yarn install
 $ yarn sync
-# Se puede usar npm en lugar de yarn
+  lerna info Removing the following directories:
+  lerna info clean packages/claro-app/node_modules
+  lerna info clean packages/search-nav/node_modules
+  ? Proceed? (ynH)
+$ y
 ```
 
 `yarn sync` lo que hace, es generar los enlaces simbólicos entre los paquetes del monorepo (en este caso acotados por el namespace `@claro` así como sus dependencias)
@@ -38,8 +42,43 @@ Posteriormente, debemos dirigirnos a la ubicación del proyecto
 ```shell script
 $ cd packages/claro-app
 # Ejecutar la aplicación en modo desarrollo
-$ yarn start:build
+$ yarn serve:prod
+# Construye un empaquetado de los módulos y los ejecuta
 ```
+
+Para el componente standalone `search-nav` se tienen los siguientes comandos
+
+```shell script
+$ yarn sync
+  lerna info Removing the following directories:
+  lerna info clean packages/claro-app/node_modules
+  lerna info clean packages/search-nav/node_modules
+  ? Proceed? (ynH)
+$ y
+$ cd packages/search-nav
+$ yarn test 
+# Para ejecutar las pruebas unitarias. Están configuradas como T.D.D. (chai/karma) con @open-wc/testing 
+$ yarn serve
+```
+
+### Despliegue
+
+V1.0.0 https://clarovideo-bba70.firebaseapp.com
+
+La app está desplegada en Firebase Hosting, en la URL anterior.
+
+### Construido con amor y con las siguientes tecnologías
+
+* [LitElement](https://lit-element.polymer-project.org/) - Librería web usada
+* [Redux](https://redux.js.org/) - Librería para construir un árbol de estados centralizado para la transición de páginas
+* [Redux-Thunk](https://github.com/reduxjs/redux-thunk/) - Librería que permite realizar cambios asíncronos al store de Redux
+* [Yarn](https://yarnpkg.com/) - Manejador de paquetes
+* [Lerna](https://lerna.js.org/) - Manejador de proyectos JavaScript con múltiples paquetes como único repositorio
+* [Rollup](https://rollupjs.org/guide/en/) - Herramienta para empaquetar JavaScript (LitElement)
+* [Open WC](https://open-wc.org/) - Conjunto de recomendaciones, buenas prácticas y herramientas para trabajar WebComponents
+* [WebComponents](https://www.webcomponents.org/) - Plataforma de webcomponents basados en LitElement, y Polymer
+* [Karma](https://karma-runner.github.io/latest/index.html) - Herramienta para ejecutar las pruebas unitarias
+* [Chai](https://www.chaijs.com/) - Librería de assertions para TDD
 
 ## Versioning
 

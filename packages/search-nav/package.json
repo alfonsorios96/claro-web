@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "main": "search-nav.js",
   "scripts": {
-    "tsc": "tsc",
-    "build": "rimraf dist && tsc && rollup -c rollup.config.js",
-    "start:build": "yarn build && es-dev-server --root-dir dist --app-index index.html --compatibility none --watch --open",
-    "test": "tsc && karma start karma.conf.cjs"
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "serve": "yarn build && es-dev-server --root-dir dist --app-index index.html --compatibility none --watch --open",
+    "test": "karma start karma.conf.cjs"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
