@@ -1,13 +1,5 @@
-# Settings in the [build] context are global and are applied to all contexts
-# unless otherwise overridden by more specific contexts.
 [build]
-  command = yarn
-
-  command = yarn sync
-
-  # Directory to change to before starting a build.
+  command = "npm i yarn@1.21.1 && yarn && yarn sync"
   base = "packages/claro-app"
-
-  command = yarn build
-
-  publish = "packages/claro-app/dist"
+  command = "yarn build"
+  publish = "packages/claro-app/dist/"
