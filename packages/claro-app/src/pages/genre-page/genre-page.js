@@ -1,6 +1,6 @@
 import {LitElement, html, css} from 'lit-element';
 
-import '@claro/search-nav';
+import '@claro/search-nav/search-nav.js';
 
 export class GenrePage extends LitElement {
 

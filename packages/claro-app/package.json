@@ -1,9 +1,11 @@
 {
   "name": "@claro/web-app",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js && mkdir dist/assets/ && cp -fr img/ dist/assets/",
-    "start:build": "yarn build && es-dev-server --root-dir dist --app-index index.html --compatibility none --watch --open"
+    "serve:prod": "yarn build && cp dist/index_prod.html dist/index.html && es-dev-server --root-dir dist --app-index index.html --compatibility none",
+    "serve:dev": "es-dev-server --node-resolve --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

@@ -5,6 +5,7 @@ export class HomePage extends LitElement {
     static get properties() {
         return {
             genres: {type: Array},
+            path: {type: String}
         };
     }
 
@@ -34,6 +35,7 @@ export class HomePage extends LitElement {
 
     constructor() {
         super();
+        this.path = '';
         this.genres = [];
     }
 
@@ -116,7 +118,7 @@ export class HomePage extends LitElement {
         <section class="main">
            ${this.genres.map(genre => html`
                 <div genre="${genre.code}" @click="${this.selectGenre}">
-                    <img src="./assets/${genre.code}.jpg" alt="${genre.title}">
+                    <img src="${this.path + genre.code}.jpg" alt="${genre.title}">
                 </div>
            `)}
         </section> 

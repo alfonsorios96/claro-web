@@ -2,10 +2,10 @@ import merge from 'deepmerge';
 import {createSpaConfig} from '@open-wc/building-rollup';
 
 const baseConfig = createSpaConfig({
-    developmentMode: true,
-    injectServiceWorker: false,
+    developmentMode: false,
+    injectServiceWorker: true
 });
 
 export default merge(baseConfig, {
-    input: './index.html'
+    input: './index_prod.html'
 });
