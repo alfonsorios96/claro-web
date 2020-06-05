@@ -1,4 +1,5 @@
 src/*.js
+!src/claro-app.js
 src/*.map
 src/*.d.ts
 dist/
