@@ -1,11 +1,11 @@
 # Claro Video Web
 
-Este proyecto es una plataforma web basada en WebComponents con fines de Prueba de Concepto arquitectónicas de monorepositorio y TypeScript
+Este proyecto es una plataforma web basada en WebComponents con fines de Prueba de Concepto arquitectónicas de monorepositorio.
 
 ## Objetivos
 
 * Usar las mejores prácticas en el desarrollo de aplicaciones Web.
-* Utilizar tecnologías en convivencia: LitElement escrito con TypeScript, componentes en un monorepositorio Lerna y pruebas unitarias.
+* Utilizar tecnologías en convivencia: LitElement, componentes en un monorepositorio Lerna y pruebas unitarias.
 * Sitio Web responsivo.
 
 ### Pre-requisitos
@@ -16,13 +16,29 @@ npm >= 5.6
 yarn 1.21.1
 Permisos de nivel y acceso escritura, lectura para el usuario o grupo del S.O. a ejecutar (drwxr-xr-x) recomendada.
 ```
+### Explicación del monorepositorio
+
+Un monorepostorio contiene todos los módulos (paquetes NPM) que comprenden la totalidad del proyecto, en este caso incluyo dos paquetes NPM.
+
+El primero es `claro-app` que es  el proyecto de la aplicación SPA en cuestión del ejercicio, mientas que el segundo es un componente standalone `search-view` que tiene coomo propósito filtrar el catálogo de películas o series una vez que se ha seleccionado el género.
 
 ### Instalación
 
 ```shell script
+# Lo primero que tenemos que hacer es configurar el monorepositorio de Lerna
 $ yarn
+$ yarn sync
 # Se puede usar npm en lugar de yarn
-$ yarn start
+```
+
+`yarn sync` lo que hace, es generar los enlaces simbólicos entre los paquetes del monorepo (en este caso acotados por el namespace `@claro` así como sus dependencias)
+
+Posteriormente, debemos dirigirnos a la ubicación del proyecto
+
+```shell script
+$ cd packages/claro-app
+# Ejecutar la aplicación en modo desarrollo
+$ yarn start:build
 ```
 
 ## Versioning
