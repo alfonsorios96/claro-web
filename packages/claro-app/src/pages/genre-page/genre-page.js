@@ -7,6 +7,7 @@ export class GenrePage extends LitElement {
     static get properties() {
         return {
             genre: {type: String},
+            genre_id: {type: String},
             movies: {type: Array},
             list: {type: Array},
             genres: {type: Array}
@@ -34,6 +35,7 @@ export class GenrePage extends LitElement {
     constructor() {
         super();
         this.genre = '';
+        this.genre_id = '';
         this.movies = [];
         this.list = [];
         this.genres = [];
@@ -51,6 +53,7 @@ export class GenrePage extends LitElement {
             const indexGenre = this.genres.indexOf(this.genre);
             if (indexGenre !== -1) {
                 const id = indexGenre + 67986;
+                this.genre_id = id;
                 fetch(`${URL}${id}`)
                     .then(response => response.json())
                     .then(payload => {
@@ -93,7 +96,7 @@ export class GenrePage extends LitElement {
         const uri = event.currentTarget.getAttribute('uri');
         this.dispatchEvent(new CustomEvent('movie-selected', {
             detail: {
-                uri, movie
+                uri, movie, genre_id: this.genre_id
             }
         }));
     }
