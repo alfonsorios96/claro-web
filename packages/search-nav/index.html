@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Claro Video | SearchNav Component</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <search-nav></search-nav>
+
+<h3>Películas filtradas</h3>
+
+<div id="container-movies"></div>
+
+
 <script type="module" src="./search-nav.js"></script>
+<script>
+    const source = [
+        {
+            title: 'Avatar: La leyenda de Aang'
+        },
+        {
+            title: 'Avatar. La de los seres azules'
+        },
+        {
+            title: 'Scarface'
+        },
+        {
+            title: 'Casino'
+        }
+    ];
+    const _el = document.querySelector('search-nav');
+    _el.source = source;
+    _el.addEventListener('movies-filtered', event => {
+        const container = document.querySelector('#container-movies');
+        container.innerHTML = `
+            <ul>
+                ${event.detail.movies.map(movie => `
+                    <li>${movie.title}</li>
+                `)}
+            </ul>
+        `;
+    });
+</script>
 </body>
 </html>
