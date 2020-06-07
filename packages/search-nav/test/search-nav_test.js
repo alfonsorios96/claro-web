@@ -1,5 +1,5 @@
 import {SearchNav} from '../search-nav.js';
-// import {fixture, html} from '@open-wc/testing';
+import {fixture, html} from '@open-wc/testing';
 
 const assert = chai.assert;
 
@@ -9,32 +9,80 @@ suite('search-nav', () => {
         assert.instanceOf(el, SearchNav);
     });
 
-    /*
-    *
-    * test('renders with a set name', async () => {
-        const el = await fixture(html`<my-element name="Test"></my-element>`);
-        assert.shadowDom.equal(
-            el,
-            `
-      <h1>Hello, Test!</h1>
-      <button part="button">Click Count: 0</button>
-      <slot></slot>
-    `
-        );
+    test('listen event movies-filtered when input value is empty', async () => {
+        const source = [
+            {
+                title: 'Avatar: La leyenda de Aang'
+            },
+            {
+                title: 'Avatar. La de los seres azules'
+            },
+            {
+                title: 'Scarface'
+            },
+            {
+                title: 'Casino'
+            }
+        ];
+        const el = await fixture(html`<search-nav></search-nav>`);
+        el.source = source;
+
+        el.addEventListener('movies-filtered', event => {
+            assert.strictEqual(event.detail.movies.length, 4);
+        });
+
+        el.shadowRoot.querySelector('paper-input').value = '';
     });
 
-    test('handles a click', async () => {
-        const el = (await fixture(html`<my-element></my-element>`)) as MyElement;
-        const button = el.shadowRoot!.querySelector('button')!;
-        button.click();
+    test('listen event movies-filtered when input value has two coincidences', async () => {
+        const source = [
+            {
+                title: 'Avatar: La leyenda de Aang'
+            },
+            {
+                title: 'Avatar. La de los seres azules'
+            },
+            {
+                title: 'Scarface'
+            },
+            {
+                title: 'Casino'
+            }
+        ];
+        const el = await fixture(html`<search-nav></search-nav>`);
+        el.source = source;
         await el.updateComplete;
-        assert.shadowDom.equal(
-            el,
-            `
-      <h1>Hello, World!</h1>
-      <button part="button">Click Count: 1</button>
-      <slot></slot>
-    `
-        );
-    });*/
+
+        el.addEventListener('movies-filtered', event => {
+            assert.strictEqual(event.detail.movies.length, 2);
+        });
+
+        el.shadowRoot.querySelector('paper-input').value = 'avatar';
+    });
+
+    test('listen event movies-filtered when input value has not coincidences', async () => {
+        const source = [
+            {
+                title: 'Avatar: La leyenda de Aang'
+            },
+            {
+                title: 'Avatar. La de los seres azules'
+            },
+            {
+                title: 'Scarface'
+            },
+            {
+                title: 'Casino'
+            }
+        ];
+        const el = await fixture(html`<search-nav></search-nav>`);
+        el.source = source;
+        await el.updateComplete;
+
+        el.addEventListener('movies-filtered', event => {
+            assert.strictEqual(event.detail.movies.length, 0);
+        });
+
+        el.shadowRoot.querySelector('paper-input').value = 'zzzz';
+    });
 });
